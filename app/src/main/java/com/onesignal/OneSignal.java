@@ -27,25 +27,6 @@
 
 package com.onesignal;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.TimeZone;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicLong;
-
-import org.json.*;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
@@ -67,8 +48,20 @@ import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.util.Base64;
 import android.util.Log;
-
 import com.onesignal.OneSignalDbContract.NotificationTable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.security.MessageDigest;
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * The main OneSignal class - this is where you will interface with the OneSignal SDK
@@ -789,9 +782,10 @@ public class OneSignal {
       if (mPushRegistrator != null)
          return mPushRegistrator;
 
-      if (deviceType == UserState.DEVICE_TYPE_FIREOS)
+      /*if (deviceType == UserState.DEVICE_TYPE_FIREOS)
          mPushRegistrator = new PushRegistratorADM();
-      else if (OSUtils.hasFCMLibrary())
+      else */
+      if (OSUtils.hasFCMLibrary())
          mPushRegistrator = new PushRegistratorFCM();
       else
          mPushRegistrator = new PushRegistratorGCM();
