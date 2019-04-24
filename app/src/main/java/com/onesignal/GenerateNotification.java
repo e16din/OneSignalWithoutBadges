@@ -601,7 +601,7 @@ class GenerateNotification {
               .setDeleteIntent(summaryDeleteIntent)
               .setContentTitle(currentContext.getPackageManager().getApplicationLabel(currentContext.getApplicationInfo()))
               .setContentText(summaryMessage)
-              .setNumber(notificationCount)
+//              .setNumber(notificationCount)
               .setSmallIcon(getDefaultSmallIconId())
               .setLargeIcon(getDefaultLargeIcon())
               .setOnlyAlertOnce(updateSummary)
